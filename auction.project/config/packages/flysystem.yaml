@@ -1,0 +1,48 @@
+# Read the documentation at https://github.com/thephpleague/flysystem-bundle/blob/master/docs/1-getting-started.md
+flysystem:
+    storages:
+        default.storage:
+            adapter: 'local'
+            options:
+                directory: '%kernel.project_dir%/public/img'
+        message.storage:
+            adapter: 'local'
+            options:
+                directory: '%kernel.project_dir%/public/img_message'
+        message.payment:
+            adapter: 'local'
+            options:
+                directory: '%kernel.project_dir%/public/img_message_payment'
+        event.storage:
+            adapter: 'local'
+            options:
+                directory: '%kernel.project_dir%/public/img_event'
+        confirm_doc.storage:
+            adapter: 'local'
+            options:
+                directory: '%kernel.project_dir%/public/img_confirm_doc'
+        news_photo.storage:
+            adapter: 'local'
+            options:
+                directory: '%kernel.project_dir%/public/img_news_photo'
+
+
+#    users.storage:
+#        adapter: 'azure'
+#        options:
+#            client: 'azure_client_service' # The service ID of the MicrosoftAzure\Storage\Blob\BlobRestProxy instance
+#            container: 'container_name'
+#            prefix: 'optional/path/prefix'
+
+#    backup.storage:
+#        adapter: 'ftp'
+#        options:
+#            host: 'ftp.example.com'
+#            username: 'root'
+#            password: ''
+#            port: 21
+#            root: '/path/to/root'
+#            passive: true
+#            ssl: true
+#            timeout: 30
+#            ignore_passive_address: ~

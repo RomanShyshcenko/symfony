@@ -1,0 +1,20 @@
+version: '3.7'
+
+services:
+  web:
+    container_name: ${WEB_CONTAINERNAME}
+    ports:
+      - "${HOST_PORT_WEB}:80"
+
+  db:
+    container_name: ${DB_CONTAINERNAME}
+    ports:
+      - "${HOST_PORT_DB}:3306"
+
+  mailhog-service:
+    build:
+      target: DEV
+    container_name: ${MAILHOG_CONTAINERNAME}
+    ports:
+      - "${HOST_PORT_MAILHOG_SMTP}:1025"
+      - "${HOST_PORT_MAILHOG_API}:8025"

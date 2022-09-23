@@ -1,0 +1,44 @@
+version: '3.7'
+
+services:
+  web:
+    build:
+      context: ./apache-php
+    env_file:
+      - .env
+    environment:
+      APACHE_WWW_DATA_UID: ${USER_UID}
+      APACHE_WWW_DATA_GID: ${USER_GID}
+      PHP_IDE_CONFIG: serverName=project
+    volumes:
+      - ${PROJECT_SRC}:${WEB_APP_PATH}:cached
+      - ${HOME}/.composer:/var/www/.composer
+      - ${HOME}/.ssh:/var/www/.ssh:ro
+#      - ./php/conf.d/xdebug.ini:/usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+    links:
+      - ${DB_SERVICE}:${DB_CONTAINERNAME}
+      - ${MAILHOG_SERVICE}:${MAILHOG_CONTAINERNAME}
+    depends_on:
+      - ${DB_SERVICE}
+      - ${MAILHOG_SERVICE}
+    restart: 'no'
+    tty: true
+
+  db:
+    build:
+      context: ./mysql
+    env_file:
+      - .env
+    environment:
+      - MYSQL_ROOT_PASSWORD=${DB_ROOT_PASSWORD}
+      - MYSQL_DATABASE=${DB_NAME}
+      - MYSQL_USER=${DB_USER}
+      - MYSQL_PASSWORD=${DB_PASSWORD}
+    restart: 'no'
+
+  mailhog-service:
+    build:
+      target: PROD
+      context: ./mailhog
+      args:
+        - MAILHOG_DOCKERIMAGE=${MAILHOG_DOCKERIMAGE}

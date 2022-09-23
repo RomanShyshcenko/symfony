@@ -1,0 +1,52 @@
+security:
+    # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
+#    providers:
+#        fetcher - это свое название
+#        fetcher:
+#            id: App\Security\UserProvider
+
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+#        main:
+#            anonymous: true
+#            user_checker: App\Security\UserChecker
+
+#            guard:
+#                authenticators:
+#                    - App\Security\LoginFormAuthenticator
+#                    - App\Security\OAuth\FacebookAuthenticator
+#                entry_point: App\Security\LoginFormAuthenticator
+
+            remember_me:
+                secret: '%kernel.secret%'
+                lifetime: 604800
+                path: /
+                domain: ~
+                secure: true
+                name: REMEMBERME
+                remember_me_parameter: _remember_me
+
+
+            form_login: true
+            logout:
+                path: app_logout
+                # where to redirect after logout
+                # target: app_any_route
+
+            # activate different ways to authenticate
+            # https://symfony.com/doc/current/security.html#firewalls-authentication
+
+            # https://symfony.com/doc/current/security/impersonating_user.html
+            # switch_user: true
+
+
+    # Easy way to control access for large sections of your site
+    # Note: Only the *first* access control that matches will be used
+    access_control:
+#        - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+#        - { path: ^/oauth, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+#        - { path: ^/signup, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+#        - { path: ^/reset, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+#        - { path: ^/rates, roles: ROLE_MANAGE_USERS }
