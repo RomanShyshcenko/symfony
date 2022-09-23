@@ -25,7 +25,7 @@ yarn-error.log
 /.web-server-pid
 ###< symfony/web-server-bundle ###
 
-.idea/
+.idea
 .idea/dataSources.local.xml
 .idea/workspace.xml
 
