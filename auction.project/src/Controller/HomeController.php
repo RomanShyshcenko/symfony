@@ -19,7 +19,6 @@ class HomeController extends AbstractController
      */
     public function index(Request $request): Response
     {
-        User::signUpByEmail();
         return $this->render('app\home.html.twig');
     }
 }
